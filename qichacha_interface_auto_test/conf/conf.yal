@@ -1,0 +1,81 @@
+# 此文件为接口自动化测试的参数化配置文件
+
+---
+# 请求头相关的参数，用来得到请求头
+header_parameter:
+  key: de23************************edd6
+  screat_key: D39B************************CDB0
+
+# 所有接口请求参数中的公共参数，单独拎出来
+common_parameter:
+  dtype: json
+  key: de23************************edd6
+
+---
+# 具体接口的请求参数
+
+# 请求的 url 参数，对应企查查的企业对外投资接口
+- base_url: http://api.qichacha.com/ECIInvestment/GetInvestmentList
+# 下面是用户输入的参数及预期的响应结果
+  test_case:
+    # 用户输入参数
+    - user_input_parameter:
+        searchKey: 湖北百旺金赋科技有限公司
+      expect_status_code: 200
+    # 用户输入参数
+    - user_input_parameter:
+        searchKey: 阿里巴巴(中国)网络技术有限公司 
+      # 预期的响应结果
+      expect_status_code: 200
+    # 用户输入参数    
+    - user_input_parameter:
+        searchKey: 一个不存在的企业
+      # 预期的响应结果
+      expect_status_code: 200
+
+# 请求的 url 参数，对应企查查的企业对外投资穿透接口
+- base_url: http://api.qichacha.com/ECIInvestmentThrough/GetInfo
+# 下面是用户输入的参数及预期的响应结果
+  test_case:
+    # 用户输入参数
+    - user_input_parameter:
+        searchKey: 湖南百旺金赋科技有限公司
+        percent: 30
+      expect_status_code: 200
+    # 用户输入参数    
+    - user_input_parameter:
+        searchKey: 小米科技有限责任公司
+        percent: 26dfdf
+      # 预期的响应结果
+      expect_status_code: 200
+
+# 请求的 url 参数，对应企查查的受益人穿透接口
+- base_url: http://api.qichacha.com/Beneficiary/GetBeneficiary
+# 下面是用户输入的参数及预期的响应结果
+  test_case:
+    # 用户输入参数
+    - user_input_parameter:
+        companyName: 北京字节跳动科技有限公司
+        percent: 3
+      expect_status_code: 200
+    # 用户输入参数
+    - user_input_parameter:
+        companyName: 小米
+        percent: 33
+      # 预期的响应结果
+      expect_status_code: 201
+
+# 请求的 url 参数，对应企查查的企业人员董监高信息
+- base_url: http://api.qichacha.com/CIAEmployeeV4/GetStockRelationInfo
+  test_case:
+    # 用户输入参数  
+    - user_input_parameter:
+        companyName: 阿里巴巴(中国)网络技术有限公司
+        name: 冯云乐
+      # 预期的响应结果
+      expect_status_code: 200
+
+
+
+
+
